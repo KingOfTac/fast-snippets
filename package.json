@@ -1,0 +1,43 @@
+{
+	"name": "fast-snippets",
+	"displayName": "FAST Snippets",
+	"description": "VSCode snippets for commonly used conventions when creating FAST Components.",
+	"version": "1.0.0",
+	"publisher": "kingoftac",
+	"icon": "icon.png",
+	"galleryBanner": {
+		"color": "#c01754",
+		"theme": "dark"
+	},
+	"homepage": "https://github.com/kingoftac/fast-snippets/main/README.md",
+	"bugs": {
+		"url": "https://github.com/kingoftac/fast-snippets/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/kingoftac/fast-snippets"
+	},
+	"engines": {
+		"vscode": "^1.22.0"
+	},
+	"categories": [
+		"Snippets",
+		"Programming Languages"
+	],
+	"contributes": {
+		"snippets": [
+			{
+				"language": "javascript,typescript",
+				"path": "./snippets.json"
+			}
+		]
+	},
+	"packageManager": "yarn@3.1.0",
+	"scripts": {
+		"package": "vsce package",
+		"deploy": "vsce publish"
+	},
+	"devDependencies": {
+		"vsce": "^1.0.0"
+	}
+}

@@ -1,0 +1,42 @@
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '.vscode/**'
+
+jobs:
+  build:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Package Version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@master
+
+      - name: release
+        uses: actions/create-release@v1
+        id: create-release
+        with:
+          draft: false
+          prerelease: false
+          release_name: ${{ steps.package-version.outputs.current-version }}
+          tag_name: ${{ steps.package-version.outputs.current-version }}
+          body_path: ${{github.workspace}}/CHANGELOG.md'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Install deps
+        run: npm install
+
+      - name: Compile and create vsix
+        run: npm run package
+
+      - name: Upload Artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create-release.outputs.upload_url }}
+          asset_path: ${{github.workspace}}/fast-snippets-${{ steps.package-version.outputs.current-version}}.vsix
+          asset_name: fast-snippets-${{ steps.package-version.outputs.current-version}}.vsix

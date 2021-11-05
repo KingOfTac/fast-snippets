@@ -1,0 +1,35 @@
+on:
+  push:
+    branches:
+      - feature/**
+    paths-ignore:
+      - '.vscode/**'
+
+jobs:
+  cicd:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+        
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@master
+
+      - name: Install deps
+        run: npm install
+
+      - name: Compile and create vsix
+        run: npm run package
+
+      - name: Upload vsix as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: fast-snippets-${{ steps.package-version.outputs.current-version }}.vsix
+          path: ${{github.workspace}}/fast-snippets-${{ steps.package-version.outputs.current-version }}.vsix
