@@ -4,28 +4,21 @@ on:
       - master
     paths-ignore:
       - '.vscode/**'
+  release:
+    types:
+      - created
+
 
 jobs:
   build:
-    name: Create Release
+    name: Publish
     runs-on: ubuntu-latest
     steps:
-      - name: Get Package Version
-        id: package-version
-        uses: martinbeentjes/npm-get-version-action@master
-
-      - name: release
-        uses: actions/create-release@v1
-        id: create-release
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
         with:
-          draft: false
-          prerelease: false
-          release_name: ${{ steps.package-version.outputs.current-version }}
-          tag_name: release-${{ steps.package-version.outputs.current-version }}
-          body_path: ${{github.workspace}}/CHANGELOG.md'
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-
+          node-version: 12
+        
       - name: Install deps
         run: npm install
 
@@ -38,5 +31,5 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ steps.create-release.outputs.upload_url }}
-          asset_path: ${{github.workspace}}/fast-snippets-${{ steps.package-version.outputs.current-version}}.vsix
-          asset_name: fast-snippets-${{ steps.package-version.outputs.current-version}}.vsix
+          asset_path: ${{github.workspace}}/fast-snippets-${{ github.event.release.tag_name }}.vsix
+          asset_name: fast-snippets-${{ github.event.release.tag_name }}.vsix
