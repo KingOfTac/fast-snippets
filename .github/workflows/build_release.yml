@@ -37,3 +37,4 @@ jobs:
           upload_url: ${{ steps.get-release.outputs.upload_url }}
           asset_path: ${{github.workspace}}/fast-snippets-${{ github.event.release.tag_name }}.vsix
           asset_name: fast-snippets-${{ github.event.release.tag_name }}.vsix
+          asset_content_type: application/zip
