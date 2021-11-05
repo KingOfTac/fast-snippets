@@ -1,9 +1,4 @@
 on:
-  push:
-    branches:
-      - master
-    paths-ignore:
-      - '.vscode/**'
   release:
     types:
       - created
