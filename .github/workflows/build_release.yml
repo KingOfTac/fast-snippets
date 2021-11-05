@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        
+
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
@@ -23,11 +23,17 @@ jobs:
       - name: Compile and create vsix
         run: npm run package
 
+      - name: Get release
+        id: get-release
+        uses: bruceadams/get-release@v1.2.3
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
       - name: Upload Artifact
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          upload_url: ${{ steps.create-release.outputs.upload_url }}
+          upload_url: ${{ steps.get-release.outputs.upload_url }}
           asset_path: ${{github.workspace}}/fast-snippets-${{ github.event.release.tag_name }}.vsix
           asset_name: fast-snippets-${{ github.event.release.tag_name }}.vsix
