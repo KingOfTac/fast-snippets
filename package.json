@@ -18,26 +18,49 @@
 		"url": "https://github.com/kingoftac/fast-snippets"
 	},
 	"engines": {
-		"vscode": "^1.22.0"
+		"vscode": "^1.62.0"
 	},
 	"categories": [
 		"Snippets",
 		"Programming Languages"
 	],
+	"main": "./out/extension.js",
+	"activationEvents": [
+		"onLanguage:typescript",
+		"onLanguage:javascript"
+	],
 	"contributes": {
-		"snippets": [
-			{
-				"language": "javascript,typescript",
-				"path": "./snippets.json"
+		"configuration": {
+			"type": "object",
+			"title": "FAST Snippets",
+			"properties": {
+				"fastSnippets.generateImportsFromSymbols": {
+					"scope": "resource",
+					"type": "boolean",
+					"default": true,
+					"description": "Enables auto inserting import statements from the included snippets."
+				},
+				"fastSnippets.quoteStyle": {
+					"type": "string",
+					"enum": ["'","\""],
+					"default": "'",
+					"description": "Set your preferred style of quotations."
+				}
 			}
-		]
+		}
 	},
 	"packageManager": "yarn@3.1.0",
 	"scripts": {
-		"package": "vsce package",
-		"deploy": "vsce publish"
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./"
 	},
 	"devDependencies": {
-		"vsce": "^1.0.0"
+		"@types/node": "^16.11.6",
+		"@types/vscode": "^1.62.0",
+		"typescript": "^4.4.4",
+		"vscode-languageclient": "^7.0.0",
+		"vscode-languageserver": "^7.0.0",
+		"vscode-languageserver-textdocument": "^1.0.2"
 	}
 }
