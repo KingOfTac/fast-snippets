@@ -56,6 +56,6 @@ export const foundationElement = new CompletionItemDefinition({
 	documentation: 'Creates a FAST foundation element.',
 	kind: CompletionItemKind.Snippet,
 	symbols: [
-		{ name: 'FoundationElement', package: '@microsoft/fast-foundation', packageId: 1 }
+		{ name: 'FoundationElement', package: '@microsoft/fast-foundation', packageId: 0 }
 	]
 });
