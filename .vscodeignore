@@ -1,4 +1,9 @@
-.vscode/**
-.vscode-test/**
-.gitignore
-vsc-extension-quickstart.md
+*
+*/**
+*/**/*
+!out/extension.bundle.js
+!LICENSE.md
+!README.md
+!CHANGELOG.md
+!fast.png
+!package.json

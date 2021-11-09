@@ -59,7 +59,7 @@ export function activate(context: ExtensionContext) {
 				line = document.lineAt(idx);
 			}
 
-			return [
+			const items = [
 				typedTemplate.getCompletionItem(documentImports),
 				untypedTemplate.getCompletionItem(documentImports),
 				binding.getCompletionItem(documentImports),
@@ -78,7 +78,9 @@ export function activate(context: ExtensionContext) {
 				slottedDirective.getCompletionItem(documentImports),
 				styles.getCompletionItem(documentImports),
 				whenDirective.getCompletionItem(documentImports)
-			];
+			]
+
+			return items;
 		}
 	});
 
