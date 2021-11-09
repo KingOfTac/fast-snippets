@@ -78,13 +78,14 @@ export class CompletionItemDefinition {
 		this._completionItem.sortText = labelOrOptions.sortText;
 		this._completionItem.tags = labelOrOptions.tags;
 		this._completionItem.textEdit = labelOrOptions.textEdit;
+		this._completionItem.filterText = labelOrOptions.label;
 	}
 
 	// TODO: This mess should get cleaned up, but I don't have time and it works for now.
 	private createImports(documentImports: Map<string, DocumentImport>): void {
 		const symbols = this.symbols;
 
-		if (generateImportsFromSymbols) {
+		if (generateImportsFromSymbols && symbols) {
 			this._completionItem.additionalTextEdits = symbols!.reduce((acc: any[], obj) => {
 					const prop = obj['packageId'];
 					acc[prop] = acc[prop] || [];
