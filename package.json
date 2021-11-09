@@ -2,9 +2,14 @@
 	"name": "fast-snippets",
 	"displayName": "FAST Snippets",
 	"description": "VSCode snippets for commonly used conventions when creating FAST Components.",
-	"version": "1.0.0",
+	"version": "1.5.0",
+	"license": "MIT",
+	"author": {
+		"name": "Nathan Brown",
+		"url": "https://github.com/kingoftac"
+	},
 	"publisher": "kingoftac",
-	"icon": "icon.png",
+	"icon": "fast.png",
 	"galleryBanner": {
 		"color": "#c01754",
 		"theme": "dark"
@@ -18,26 +23,60 @@
 		"url": "https://github.com/kingoftac/fast-snippets"
 	},
 	"engines": {
-		"vscode": "^1.22.0"
+		"vscode": "^1.62.0"
 	},
 	"categories": [
 		"Snippets",
 		"Programming Languages"
 	],
+	"main": "./dist/extension.bundle.js",
+	"activationEvents": [
+		"onLanguage:typescript",
+		"onLanguage:javascript"
+	],
 	"contributes": {
-		"snippets": [
-			{
-				"language": "javascript,typescript",
-				"path": "./snippets.json"
+		"configuration": {
+			"type": "object",
+			"title": "FAST Snippets",
+			"properties": {
+				"fastSnippets.generateImportsFromSymbols": {
+					"scope": "resource",
+					"type": "boolean",
+					"default": true,
+					"description": "Enables auto inserting import statements from the included snippets."
+				},
+				"fastSnippets.quoteStyle": {
+					"type": "string",
+					"enum": [
+						"'",
+						"\""
+					],
+					"default": "'",
+					"description": "Set your preferred style of quotations."
+				}
 			}
-		]
+		}
 	},
 	"packageManager": "yarn@3.1.0",
 	"scripts": {
-		"package": "vsce package",
-		"deploy": "vsce publish"
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./ && rollup -c",
+		"watch": "tsc -watch -p ./",
+		"clean": "node build/clean.js",
+		"package": "yarn clean && vsce package --no-yarn --out dist/"
 	},
 	"devDependencies": {
-		"vsce": "^1.0.0"
+		"@rollup/plugin-commonjs": "^21.0.1",
+		"@rollup/plugin-node-resolve": "^13.0.6",
+		"@types/node": "^16.11.6",
+		"@types/vscode": "^1.62.0",
+		"rollup": "^2.56.2",
+		"rollup-plugin-filesize": "^8.0.2",
+		"rollup-plugin-terser": "^5.3.1",
+		"rollup-plugin-typescript2": "^0.27.3",
+		"typescript": "^4.4.4",
+		"vscode-languageclient": "^7.0.0",
+		"vscode-languageserver": "^7.0.0",
+		"vscode-languageserver-textdocument": "^1.0.2"
 	}
 }

@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"experimentalDecorators": true,
+		"module": "ESNext",
+		"target": "ESNext",
+		"lib": ["ESNext"],
+		"outDir": "dist",
+		"sourceMap": true,
+		"strict": true,
+		"rootDir": "src",
+		"moduleResolution": "node"
+	},
+	"exclude": [
+		"node_modules",
+		".vscode-test",
+		".yarn",
+		"test.ts"
+	],
+}
