@@ -4,7 +4,7 @@
 	"description": "VSCode snippets for commonly used conventions when creating FAST Components.",
 	"version": "1.0.0",
 	"publisher": "kingoftac",
-	"icon": "icon.png",
+	"icon": "fast.png",
 	"galleryBanner": {
 		"color": "#c01754",
 		"theme": "dark"
@@ -24,7 +24,7 @@
 		"Snippets",
 		"Programming Languages"
 	],
-	"main": "./out/extension.js",
+	"main": "./dist/extension.bundle.js",
 	"activationEvents": [
 		"onLanguage:typescript",
 		"onLanguage:javascript"
@@ -42,7 +42,10 @@
 				},
 				"fastSnippets.quoteStyle": {
 					"type": "string",
-					"enum": ["'","\""],
+					"enum": [
+						"'",
+						"\""
+					],
 					"default": "'",
 					"description": "Set your preferred style of quotations."
 				}
@@ -52,12 +55,20 @@
 	"packageManager": "yarn@3.1.0",
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./"
+		"compile": "tsc -p ./ && rollup -c",
+		"watch": "tsc -watch -p ./",
+		"clean": "node build/clean.js",
+		"package": "yarn clean && vsce package --no-yarn --out dist/"
 	},
 	"devDependencies": {
+		"@rollup/plugin-commonjs": "^21.0.1",
+		"@rollup/plugin-node-resolve": "^13.0.6",
 		"@types/node": "^16.11.6",
 		"@types/vscode": "^1.62.0",
+		"rollup": "^2.56.2",
+		"rollup-plugin-filesize": "^8.0.2",
+		"rollup-plugin-terser": "^5.3.1",
+		"rollup-plugin-typescript2": "^0.27.3",
 		"typescript": "^4.4.4",
 		"vscode-languageclient": "^7.0.0",
 		"vscode-languageserver": "^7.0.0",

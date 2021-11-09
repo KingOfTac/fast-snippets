@@ -1,5 +1,5 @@
 # **FAST-Snippets**
-Useful vscode snippets for common patterns when creating [FAST Components](https://github.com/microsoft/fast).
+Useful vscode snippets for common patterns when creating [Microsoft's FAST Components](https://github.com/microsoft/fast).
 
 ## **Features**
 * The included snippets can automatically insert import directives for symbols that come from external packages.

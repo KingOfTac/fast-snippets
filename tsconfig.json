@@ -1,13 +1,14 @@
 {
 	"compilerOptions": {
 		"experimentalDecorators": true,
-		"module": "commonjs",
-		"target": "es2019",
-		"lib": ["ES2019"],
-		"outDir": "out",
+		"module": "ESNext",
+		"target": "ESNext",
+		"lib": ["ESNext"],
+		"outDir": "dist",
 		"sourceMap": true,
 		"strict": true,
-		"rootDir": "src"
+		"rootDir": "src",
+		"moduleResolution": "node"
 	},
 	"exclude": [
 		"node_modules",

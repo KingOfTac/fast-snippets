@@ -85,8 +85,7 @@ export class CompletionItemDefinition {
 		const symbols = this.symbols;
 
 		if (generateImportsFromSymbols) {
-			this._completionItem.additionalTextEdits = symbols
-				?.reduce((acc: any[], obj) => {
+			this._completionItem.additionalTextEdits = symbols!.reduce((acc: any[], obj) => {
 					const prop = obj['packageId'];
 					acc[prop] = acc[prop] || [];
 					acc[prop].push(obj);
