@@ -29,7 +29,7 @@
 		"Snippets",
 		"Programming Languages"
 	],
-	"main": "./dist/main.js",
+	"main": "dist/main.js",
 	"activationEvents": [
 		"onLanguage:typescript",
 		"onLanguage:javascript"
@@ -63,8 +63,6 @@
 		"esbuild:base": "esbuild ./src/extension.ts --bundle --outfile=dist/main.js --external:vscode --format=cjs --platform=node",
 		"esbuild": "yarn esbuild:base --sourcemap",
 		"esbuild:watch": "yarn esbuild:base --sourcemap --watch",
-		"compile": "tsc -p ./ && rollup -c",
-		"watch": "tsc -watch -p ./",
 		"clean": "node build/clean.js",
 		"package": "yarn clean && vsce package --no-yarn --out dist/"
 	},
