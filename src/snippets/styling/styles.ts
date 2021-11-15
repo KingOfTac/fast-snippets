@@ -1,17 +1,22 @@
-import { CompletionItemKind, SnippetString, workspace } from "vscode";
-import { CompletionItemDefinition } from "../../completion-item-definition";
+import { SnippetString, TextDocument, workspace } from "vscode";
+import { DocumentImportManager } from "../../import-manager";
+import { SnippetDefinition } from "../../snippet-definition";
 
-export const styles = new CompletionItemDefinition({
-	label: 'FAST Styles',
-	insertText: new SnippetString([
-		'export const ${1:name}Styles = (context, definition) => css`',
-		'\t${0}',
-		'`;'
-	].join('\n')),
-	detail: 'abstract class ElementStyles',
-	documentation: 'Creates a FAST Element styles definition.',
-	kind: CompletionItemKind.Snippet,
-	symbols: [
-		{ name: 'css', package: '@microsoft/fast-element', packageId: 0 }
-	]
-});
+const { quoteStyle } = workspace.getConfiguration('fastSnippets');
+
+export function styles(manager: DocumentImportManager, document: TextDocument) {
+	return new SnippetDefinition(
+		manager,
+		'FAST Styles',
+		new SnippetString([
+			'export const ${1:name}Styles = (context, definition) => css`',
+			'\t${0}',
+			'`;'
+		].join('\n')),
+		'abstract class ElementStyles',
+		'Creates a FAST Element styles definition.',
+		[
+			{ symbols: ['css'], source: '@microsoft/fast-element', isTypeImport: false }
+		]
+	).getCompletionItem(document);
+}

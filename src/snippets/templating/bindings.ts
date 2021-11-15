@@ -1,36 +1,49 @@
-import { CompletionItemKind, SnippetString, workspace } from "vscode";
-import { CompletionItemDefinition } from "../../completion-item-definition";
+import { SnippetString, TextDocument, workspace } from "vscode";
+import { DocumentImportManager } from "../../import-manager";
+import { SnippetDefinition } from "../../snippet-definition";
 
 const { quoteStyle } = workspace.getConfiguration('fastSnippets');
 
-export const binding = new CompletionItemDefinition({
-	label: 'Binding',
-	insertText: new SnippetString('${1:html_attr}="${x => x.${0:property}}"'),
-	detail: 'type Binding<TSource = any, TReturn = any, TParent = any>',
-	documentation: 'Creates a simple property binding inside an element template.',
-	kind: CompletionItemKind.Snippet
-});
+export function binding(manager: DocumentImportManager, document: TextDocument) {
+	return new SnippetDefinition(
+		manager,
+		'Binding',
+		new SnippetString('${1:html_attr}="${x => x.${0:property}}"'),
+		'type Binding<TSource = any, TReturn = any, TParent = any>',
+		'Creates a simple property binding inside an element template.',
+		[]
+	).getCompletionItem(document);
+}
 
-export const booleanBinding = new CompletionItemDefinition({
-	label: 'Binding[boolean]',
-	insertText: new SnippetString('?${1:property}="${x => x.${0:property}}"'),
-	detail: 'type Binding<TSource = any, TReturn = any, TParent = any>',
-	documentation: 'Creates a boolean property binding inside an element template.',
-	kind: CompletionItemKind.Snippet
-});
+export function booleanBinding(manager: DocumentImportManager, document: TextDocument) {
+	return new SnippetDefinition(
+		manager,
+		'Binding[boolean]',
+		new SnippetString('?${1:property}="${x => x.${0:property}}"'),
+		'type Binding<TSource = any, TReturn = any, TParent = any>',
+		'Creates a boolean property binding inside an element template.',
+		[]
+	).getCompletionItem(document);
+}
 
-export const propertyBinding = new CompletionItemDefinition({
-	label: 'Binding[property]',
-	insertText: new SnippetString(':${1:property}="${x => x.${0:property}}"'),
-	detail: 'type Binding<TSource = any, TReturn = any, TParent = any>',
-	documentation: 'Creates a property binding inside an element template.',
-	kind: CompletionItemKind.Snippet
-});
+export function propertyBinding(manager: DocumentImportManager, document: TextDocument) {
+	return new SnippetDefinition(
+		manager,
+		'Binding[property]',
+		new SnippetString(':${1:property}="${x => x.${0:property}}"'),
+		'type Binding<TSource = any, TReturn = any, TParent = any>',
+		'Creates a property binding inside an element template.',
+		[]
+	).getCompletionItem(document);
+}
 
-export const eventBinding = new CompletionItemDefinition({
-	label: 'Binding[event]',
-	insertText: new SnippetString('@${1:property}="${x => x.${0:property}}"'),
-	detail: 'type Binding<TSource = any, TReturn = any, TParent = any>',
-	documentation: 'Creates an event binding inside an element template.',
-	kind: CompletionItemKind.Snippet
-});
+export function eventBinding(manager: DocumentImportManager, document: TextDocument) {
+	return new SnippetDefinition(
+		manager,
+		'Binding[event]',
+		new SnippetString('@${1:property}="${x => x.${0:property}}"'),
+		'type Binding<TSource = any, TReturn = any, TParent = any>',
+		'Creates an event property binding inside an element template.',
+		[]
+	).getCompletionItem(document);
+}
