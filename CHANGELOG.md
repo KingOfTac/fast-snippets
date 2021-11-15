@@ -21,3 +21,7 @@ All notable changes to the "fast-snippets" extension will be documented in this 
 	A side effect of this is the auto import behavior only works for the snippets included in this
 	extension.
 	* If [vscode#111007](https://github.com/microsoft/vscode/issues/111007) gets implemented, then this might work with user and global snippet files.
+
+### 1.6.0
+* Reworked how the extension manages the existing document imports and how new imports get inserted.
+	* Overall should be more reliable and less prone to failure
