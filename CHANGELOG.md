@@ -25,3 +25,6 @@ All notable changes to the "fast-snippets" extension will be documented in this 
 ### 1.6.0
 * Reworked how the extension manages the existing document imports and how new imports get inserted.
 	* Overall should be more reliable and less prone to failure
+
+### 1.6.1
+* Fixed wrong syntax for `when` & `repeat` directives

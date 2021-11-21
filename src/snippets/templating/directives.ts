@@ -21,7 +21,7 @@ export function whenDirective(manager: DocumentImportManager, document: TextDocu
 	return new SnippetDefinition(
 		manager,
 		'When Directive',
-		new SnippetString(`\${when(${quoteStyle}\${1}${quoteStyle}, \${0})}`),
+		new SnippetString(`\${when(x => x.\${1}, \${0})}`),
 		'abstract class HTMLDirective',
 		'Creates a FAST when directive inside an element template.',
 		[
@@ -34,7 +34,7 @@ export function repeatDirective(manager: DocumentImportManager, document: TextDo
 	return new SnippetDefinition(
 		manager,
 		'Repeat Directive',
-		new SnippetString(`\${repeat(${quoteStyle}\${1}${quoteStyle}, \${0})}`),
+		new SnippetString(`\${repeat(x => x.\${1}, \${0})}`),
 		'abstract class HTMLDirective',
 		'Creates a FAST repeat directive inside an element template.',
 		[

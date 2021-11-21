@@ -2,7 +2,7 @@
 	"name": "fast-snippets",
 	"displayName": "FAST Snippets",
 	"description": "VSCode snippets for commonly used conventions when creating FAST Components.",
-	"version": "1.6.0",
+	"version": "1.6.1",
 	"license": "MIT",
 	"author": {
 		"name": "Nathan Brown",
@@ -64,7 +64,8 @@
 		"esbuild": "yarn esbuild:base --sourcemap",
 		"esbuild:watch": "yarn esbuild:base --sourcemap --watch",
 		"clean": "node build/clean.js",
-		"package": "yarn clean && vsce package --no-yarn --out dist/"
+		"package": "yarn clean && vsce package --no-yarn --out dist/",
+		"publish": "vsce publish --no-yarn"
 	},
 	"devDependencies": {
 		"@types/node": "^16.11.6",
