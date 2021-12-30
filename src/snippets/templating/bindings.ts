@@ -41,7 +41,7 @@ export function eventBinding(manager: DocumentImportManager, document: TextDocum
 	return new SnippetDefinition(
 		manager,
 		'Binding[event]',
-		new SnippetString('@${1:property}="${x => x.${0:property}}"'),
+		new SnippetString('@${1:event}="${(x, c) => x.${0:property}(c.event)}"'),
 		'type Binding<TSource = any, TReturn = any, TParent = any>',
 		'Creates an event property binding inside an element template.',
 		[]

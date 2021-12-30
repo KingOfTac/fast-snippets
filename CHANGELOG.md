@@ -28,3 +28,6 @@ All notable changes to the "fast-snippets" extension will be documented in this 
 
 ### 1.6.1
 * Fixed wrong syntax for `when` & `repeat` directives
+
+### 1.6.2
+* Fixed wrong syntax for event bindings
