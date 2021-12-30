@@ -34,3 +34,6 @@ Useful vscode snippets for common patterns when creating [Microsoft's FAST Compo
 
 ### 1.6.1
 * Fixed wrong syntax for `when` & `repeat` directives
+
+### 1.6.2
+* Fixed wrong syntax for event bindings
